@@ -1,14 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="end" align="right">
+            <ion-avatar>
+                <img src="https://image.freepik.com/foto-gratis/retrato-joven-sonriente_53419-4337.jpg">
+            </ion-avatar>
+        </ion-buttons>
+        <ion-title>
+            8GAG
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content padding>
+    <ion-card [id]="card.key" *ngFor="let card of _cloud.AllPostsCreated" color="dark">
+        <ion-img [src]="card.img"></ion-img>
+        <ion-card-header>
+            <ion-card-title align="center">{{card.titulo}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-button (click)="SocialShare(card);" expand="block" color="primary" align="left">
+                <ion-icon name="share-alt"></ion-icon>
+                Compartir
+            </ion-button>
+        </ion-card-content>
+    </ion-card>
+    <ion-fab (click)="triggerModal();" color="danger" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="danger">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-infinite-scroll [disabled]="!_cloud.CanScrollInfinity" threshold="100px" (ionInfinite)="loadMorePost($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más información...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

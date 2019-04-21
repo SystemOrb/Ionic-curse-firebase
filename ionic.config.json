@@ -1,5 +1,7 @@
 {
   "name": "gag",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

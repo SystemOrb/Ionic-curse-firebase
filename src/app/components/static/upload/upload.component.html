@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons (click)="closeModal();" slot="start">
+            <ion-icon style="font-size: 30px" name="arrow-round-back"></ion-icon>
+        </ion-buttons>
+        <ion-buttons *ngIf="imageBase64 && ImagePreview && PostName" (click)="UploadTask();" slot="end">
+            <ion-icon name="cloud-upload"></ion-icon>&nbsp; Listo
+        </ion-buttons>
+        <ion-title>
+            {{ PostName | post:'Crear Post'}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-grid>
+    <ion-row>
+        <ion-col size="6">
+            <ion-item>
+                <ion-label position="floating">Postname</ion-label>
+                <ion-input required [(ngModel)]="PostName"></ion-input>
+            </ion-item>
+        </ion-col>
+        <ion-col offset="2">
+            <ion-thumbnail class="picture">
+                <ion-img [src]="ImagePreview | images"></ion-img>
+            </ion-thumbnail>
+        </ion-col>
+    </ion-row>
+    <ion-row align="center">
+        <ion-col>
+            <ion-button (click)="OpenCamera();" expand="block" color="primary">
+                <ion-icon name="camera"></ion-icon>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button (click)="OpenGallery();" expand="block" color="danger">
+                <ion-icon name="image"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
